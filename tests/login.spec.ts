@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Invalid login is rejected', async ({ page }) => {
+test('Invalid login successful', async ({ page }) => {
     await page.goto('https://practicesoftwaretesting.com/auth/login');
 
     const emailInput = page.getByLabel('Email address *');
@@ -11,4 +11,5 @@ test('Invalid login is rejected', async ({ page }) => {
 
     await page.getByRole('button', { name: 'Login' }).click();
 
+    await expect(page.getByText('Invalid email or password')).toBeVisible();
 });
