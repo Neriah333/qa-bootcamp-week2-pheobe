@@ -1,0 +1,31 @@
+import { Page, Locator } from '@playwright/test';
+
+export class SearchPage {
+    readonly page: Page;
+    readonly searchInput: Locator;
+    readonly searchButton: Locator;
+    readonly pliersResult: Locator;
+
+    constructor(page: Page) {
+        this.page = page;
+
+        // Locators
+        this.searchInput = page.getByRole('textbox');
+        this.searchButton = page.getByRole('button', {
+            name: 'Search',
+        });
+        this.pliersResult = page.getByText('Pliers', {
+            exact: false,
+        });
+    }
+
+    // Actions
+    async open() {
+        await this.page.goto('https://practicesoftwaretesting.com/');
+    }
+
+    async searchFor(product: string) {
+        await this.searchInput.fill(product);
+        await this.searchButton.click();
+    }
+}
