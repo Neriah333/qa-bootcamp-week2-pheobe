@@ -5,6 +5,7 @@ export class SearchPage {
     readonly searchInput: Locator;
     readonly searchButton: Locator;
     readonly pliersResult: Locator;
+    readonly productNames: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -17,6 +18,7 @@ export class SearchPage {
         this.pliersResult = page.getByText('Pliers', {
             exact: false,
         });
+        this.productNames = page.locator('[data-test^="product-"] h5');
     }
 
     // Actions
