@@ -1,71 +1,68 @@
-# QA Bootcamp Week 2 Starter
+# QA Bootcamp Week 2 – Playwright Test Suite
 
-This is the starting point for Week 2 of the QA bootcamp. During the week you will use it to practise:
+This repository contains automated UI and API tests developed during Week 2 of the QA Bootcamp using TypeScript and Playwright.
 
-- TypeScript
-- Playwright (UI testing)
-- Postman (API testing)
-- The Toolshop REST API
-
-There are no tests in this repo. You will write them during the week.
+The test suite covers:
+- Homepage functionality.
+- Login validation.
+- Product search.
+- Page Object Model implementation.
+- Cart API operations.
+- Products API responses.
 
 ## Prerequisites
 
-Install these before you start:
+- Node.js (LTS)
+- Git
 
-- [Node.js](https://nodejs.org/) (the current LTS version)
-- [Git](https://git-scm.com/)
-- [VS Code](https://code.visualstudio.com/)
+## Setup and Running Tests
 
-## Setup
+After cloning the repository, follow these three steps:
 
-Run these steps in order from a terminal.
+### 1. Install dependencies and Chromium
 
-1. Clone the repo and open the folder:
+```bash
+npm install
+npx playwright install chromium
+```
 
-   ```bash
-   git clone <repo-url>
-   cd qa-bootcamp-week2-starter
-   ```
+### 2. Configure environment variables
 
-2. Install the dependencies:
+Copy the example environment file:
 
-   ```bash
-   npm install
-   ```
+```bash
+cp .env.example .env
+```
 
-3. Install the Chromium browser for Playwright:
+The `.env` file contains the Toolshop website and API URLs. Update them only if necessary.
 
-   ```bash
-   npx playwright install chromium
-   ```
+### 3. Run the test suite
 
-4. Copy `.env.example` to `.env`:
+```bash
+npm test
+```
 
-   ```bash
-   cp .env.example .env
-   ```
+This executes all Playwright tests in the `tests/` directory using Chromium.
 
-   `.env` already contains the Toolshop website URL (`TOOLSHOP_URL`) and the Toolshop API URL (`TOOLSHOP_API_URL`). Only change them if your trainer gives you different URLs.
+## Project Structure
 
-5. Check that your setup works:
+| Folder/File | Description |
+|---|---|
+| `tests/` | Playwright UI and API test cases |
+| `pages/` | Page Object Model classes |
+| `scripts/` | Helper scripts |
+| `features/` | Bootcamp practice materials |
+| `playwright.config.ts` | Playwright configuration |
+| `.env.example` | Example environment variables |
 
-   ```bash
-   npm run check
-   ```
+## Additional Command
 
-   This sends a GET request to the Toolshop API's `/products` endpoint (no login needed). If everything is set up correctly, it prints your Node version, the HTTP status (200), the number of products, and a last line that says `PASS`.
+Run the environment and API connectivity check:
 
-> **Warning:** never commit `.env`. It is where your own settings and, later in the course, your secrets (keys, tokens, passwords) live. It is listed in `.gitignore` so Git ignores it. Do not remove it from there.
+```bash
+npm run check
+```
 
-## Folders
+## Security
 
-| Folder     | What it is for |
-|------------|----------------|
-| `tests/`   | Your Playwright tests. It is empty for now; you will add tests during the week. |
-| `scripts/` | Helper scripts. `check.ts` checks your setup and is run by `npm run check`. |
-
-## Scripts
-
-- `npm run check`: checks your `.env` and that you can reach the Toolshop API.
-- `npm test`: runs the Playwright tests in `tests/`.
+Never commit your `.env` file or expose credentials, tokens, or other sensitive information. The `.env` file is excluded through `.gitignore`.
